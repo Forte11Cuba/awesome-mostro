@@ -1,10 +1,10 @@
+<h1 align="center">Awesome Mostro <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a></h1>
+
 <p align="center">
   <img src="assets/logo.png" alt="Mostro" width="360">
 </p>
 
-# Awesome Mostro 🧌 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
-
-[English](README.md) · **Español**
+<p align="center"><a href="README.md">English</a> · <b>Español</b></p>
 
 Una lista colaborativa y seleccionada de recursos, clientes, herramientas y proyectos para [Mostro](https://mostro.network), el exchange peer-to-peer de Bitcoin sobre Lightning Network y Nostr.
 
