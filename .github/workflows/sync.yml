@@ -1,0 +1,42 @@
+name: Check translations
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  links-in-sync:
+    name: README.md and README.es.md list the same links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compare links
+        run: |
+          # Every link in the English list must be in the Spanish one and vice versa.
+          # The license link is skipped: each file points to the license in its own language.
+          links() {
+            grep -oE '\]\(https?://[^)]+\)' "$1" \
+              | sed -E 's/^\]\((.*)\)$/\1/' \
+              | grep -v 'creativecommons.org' \
+              | sort -u
+          }
+          links README.md > en.txt
+          links README.es.md > es.txt
+
+          missing_es=$(comm -23 en.txt es.txt)
+          missing_en=$(comm -13 en.txt es.txt)
+
+          if [ -n "$missing_es" ]; then
+            echo "::error file=README.es.md::Links in README.md that are missing from README.es.md:"
+            echo "$missing_es"
+          fi
+          if [ -n "$missing_en" ]; then
+            echo "::error file=README.md::Links in README.es.md that are missing from README.md:"
+            echo "$missing_en"
+          fi
+          if [ -n "$missing_es$missing_en" ]; then
+            exit 1
+          fi
+          echo "Both lists have the same $(wc -l < en.txt) links."
