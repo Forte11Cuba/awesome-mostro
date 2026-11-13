@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Mostro" width="360">
+</p>
+
 # Awesome Mostro 🧌 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 [English](README.md) · **Español**
